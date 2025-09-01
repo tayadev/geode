@@ -68,7 +68,8 @@ for (const caseName of testCases) {
       output: config.output,
     };
     const files = loadDataPackFiles(srcDir);
-    const pack = buildPack(meta, files);
+    // For plugin test case, pass inputDir as pluginDir so plugins are resolved correctly
+    const pack = await buildPack(meta, files, inputDir);
 
     // Export to .actual (never overwrite /expected)
     await exportPack(pack, meta, actualDir);
