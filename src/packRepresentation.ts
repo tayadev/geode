@@ -55,16 +55,13 @@ export async function buildPack(
 
   // Load files from disk
   for (const file of files) {
-    if (!pack.data[file.namespace]) {
-      pack.data[file.namespace] = { function: {} };
-    }
+    pack.data[file.namespace] = pack.data[file.namespace] ?? { function: {} };
+    const nsObj = pack.data[file.namespace] as { function: { [functionPath: string]: string } };
+    nsObj.function = nsObj.function ?? {};
     if (file.type === "function") {
       // Remove leading "function/" from relativePath
       const functionPath = file.relativePath.replace(/^function[\\/]/, "");
-      if (!pack.data[file.namespace].function) {
-        pack.data[file.namespace].function = {};
-      }
-      pack.data[file.namespace].function![functionPath] = file.content;
+      nsObj.function[functionPath] = file.content;
     }
     // TODO: handle tags, assets
   }
@@ -90,9 +87,6 @@ export async function buildPack(
             add: (name: string, content: string) => {
               if (!pack.data[namespace]) {
                 pack.data[namespace] = { function: {} };
-              }
-              if (!pack.data[namespace].function) {
-                pack.data[namespace].function = {};
               }
               pack.data[namespace].function[name] = content;
             },
