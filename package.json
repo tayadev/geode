@@ -1,0 +1,20 @@
+{
+  "name": "geode",
+  "private": true,
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/bun": "latest",
+    "@types/semver": "^7.7.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "commander": "^14.0.0",
+    "semver": "^7.7.2",
+    "wasmoon": "^1.16.0"
+  }
+}
