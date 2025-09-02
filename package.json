@@ -16,5 +16,8 @@
     "commander": "^14.0.0",
     "semver": "^7.7.2",
     "wasmoon": "^1.16.0"
+  },
+  "bin": {
+    "geode": "src/index.ts"
   }
 }
